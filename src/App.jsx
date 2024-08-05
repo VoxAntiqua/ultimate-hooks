@@ -26,8 +26,10 @@ const useResource = baseUrl => {
     getAll()
   }, [])
 
-  const create = resource => {
-    // ...
+  const create = async newObject => {
+    const response = await axios.post(baseUrl, newObject)
+    setResources(resources.concat(response.data))
+    return response.data
   }
 
   const service = {
