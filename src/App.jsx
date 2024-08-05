@@ -8,10 +8,15 @@ const useField = type => {
     setValue(event.target.value)
   }
 
+  const onReset = () => {
+    setValue('')
+  }
+
   return {
     type,
     value,
     onChange,
+    onReset,
   }
 }
 
@@ -50,11 +55,14 @@ const App = () => {
   const handleNoteSubmit = event => {
     event.preventDefault()
     noteService.create({ content: content.value })
+    content.onReset()
   }
 
   const handlePersonSubmit = event => {
     event.preventDefault()
     personService.create({ name: name.value, number: number.value })
+    name.onReset()
+    number.onReset()
   }
 
   return (
